@@ -100,6 +100,41 @@ export type Database = {
           },
         ]
       }
+      product_shares: {
+        Row: {
+          device_type: string | null
+          id: string
+          platform: string
+          product_id: string
+          referrer: string | null
+          shared_at: string | null
+        }
+        Insert: {
+          device_type?: string | null
+          id?: string
+          platform: string
+          product_id: string
+          referrer?: string | null
+          shared_at?: string | null
+        }
+        Update: {
+          device_type?: string | null
+          id?: string
+          platform?: string
+          product_id?: string
+          referrer?: string | null
+          shared_at?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "product_shares_product_id_fkey"
+            columns: ["product_id"]
+            isOneToOne: false
+            referencedRelation: "products"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       products: {
         Row: {
           affiliate_link: string

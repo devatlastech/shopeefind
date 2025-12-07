@@ -14,7 +14,7 @@ import {
   Pie,
   Cell
 } from "recharts";
-import { Package, MousePointerClick, Mail, TrendingUp } from "lucide-react";
+import { Package, MousePointerClick, Mail, TrendingUp, Share2 } from "lucide-react";
 
 const COLORS = ['hsl(var(--primary))', 'hsl(var(--secondary))', 'hsl(var(--accent))', '#10B981', '#F59E0B', '#EF4444'];
 
@@ -22,20 +22,23 @@ export default function DashboardPage() {
   const { data: stats } = useQuery({
     queryKey: ["admin-stats"],
     queryFn: async () => {
-      const [productsRes, clicksRes, subscribersRes] = await Promise.all([
+      const [productsRes, clicksRes, subscribersRes, sharesRes] = await Promise.all([
         supabase.from("products").select("id, click_count, status"),
         supabase.from("product_clicks").select("id, clicked_at"),
         supabase.from("newsletter_subscribers").select("id, is_active"),
+        supabase.from("product_shares").select("id, platform, shared_at"),
       ]);
 
       const products = productsRes.data || [];
       const clicks = clicksRes.data || [];
       const subscribers = subscribersRes.data || [];
+      const shares = sharesRes.data || [];
 
       const totalProducts = products.length;
       const activeProducts = products.filter(p => p.status === 'active' || p.status === 'featured').length;
       const totalClicks = products.reduce((acc, p) => acc + (p.click_count || 0), 0);
       const activeSubscribers = subscribers.filter(s => s.is_active).length;
+      const totalShares = shares.length;
 
       // Clicks last 7 days
       const last7Days = [...Array(7)].map((_, i) => {
@@ -52,12 +55,20 @@ export default function DashboardPage() {
         };
       });
 
+      // Shares by platform
+      const sharesByPlatform = ['whatsapp', 'telegram', 'twitter', 'copy'].map(platform => ({
+        platform: platform === 'copy' ? 'Link' : platform.charAt(0).toUpperCase() + platform.slice(1),
+        count: shares.filter(s => s.platform === platform).length
+      })).filter(s => s.count > 0);
+
       return {
         totalProducts,
         activeProducts,
         totalClicks,
         activeSubscribers,
-        clicksByDay
+        totalShares,
+        clicksByDay,
+        sharesByPlatform
       };
     }
   });
@@ -145,14 +156,14 @@ export default function DashboardPage() {
           <Card className="animate-fade-in" style={{ animationDelay: '0.2s' }}>
             <CardHeader className="flex flex-row items-center justify-between pb-2">
               <CardTitle className="text-sm font-medium text-muted-foreground">
-                Inscritos Newsletter
+                Compartilhamentos
               </CardTitle>
-              <Mail className="h-4 w-4 text-muted-foreground" />
+              <Share2 className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold text-foreground">{stats?.activeSubscribers || 0}</div>
+              <div className="text-2xl font-bold text-foreground">{stats?.totalShares || 0}</div>
               <p className="text-xs text-muted-foreground">
-                Emails ativos
+                Total de compartilhamentos
               </p>
             </CardContent>
           </Card>
@@ -251,33 +262,81 @@ export default function DashboardPage() {
         </div>
 
         {/* Top Products */}
-        <Card className="animate-fade-in" style={{ animationDelay: '0.6s' }}>
-          <CardHeader>
-            <CardTitle className="text-foreground">Produtos Mais Clicados</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="space-y-4">
-              {topProducts?.map((product, index) => (
-                <div key={product.id} className="flex items-center gap-4">
-                  <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary font-semibold">
-                    {index + 1}
+        <div className="grid gap-6 md:grid-cols-2">
+          <Card className="animate-fade-in" style={{ animationDelay: '0.6s' }}>
+            <CardHeader>
+              <CardTitle className="text-foreground">Produtos Mais Clicados</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-4">
+                {topProducts?.map((product, index) => (
+                  <div key={product.id} className="flex items-center gap-4">
+                    <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary font-semibold">
+                      {index + 1}
+                    </div>
+                    <div className="flex-1">
+                      <p className="font-medium text-foreground truncate">{product.title}</p>
+                    </div>
+                    <div className="text-sm text-muted-foreground">
+                      {product.click_count || 0} cliques
+                    </div>
                   </div>
-                  <div className="flex-1">
-                    <p className="font-medium text-foreground truncate">{product.title}</p>
+                ))}
+                {(!topProducts || topProducts.length === 0) && (
+                  <p className="text-center text-muted-foreground py-8">
+                    Nenhum produto cadastrado ainda
+                  </p>
+                )}
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Shares by Platform */}
+          <Card className="animate-fade-in" style={{ animationDelay: '0.7s' }}>
+            <CardHeader>
+              <CardTitle className="text-foreground">Compartilhamentos por Plataforma</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="h-[200px]">
+                {stats?.sharesByPlatform && stats.sharesByPlatform.length > 0 ? (
+                  <ResponsiveContainer width="100%" height="100%">
+                    <BarChart data={stats.sharesByPlatform} layout="vertical">
+                      <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
+                      <XAxis 
+                        type="number"
+                        stroke="hsl(var(--muted-foreground))"
+                        fontSize={12}
+                      />
+                      <YAxis 
+                        type="category"
+                        dataKey="platform"
+                        stroke="hsl(var(--muted-foreground))"
+                        fontSize={12}
+                        width={80}
+                      />
+                      <Tooltip 
+                        contentStyle={{ 
+                          backgroundColor: 'hsl(var(--background))',
+                          border: '1px solid hsl(var(--border))',
+                          borderRadius: '8px'
+                        }}
+                      />
+                      <Bar 
+                        dataKey="count" 
+                        fill="hsl(var(--primary))" 
+                        radius={[0, 4, 4, 0]}
+                      />
+                    </BarChart>
+                  </ResponsiveContainer>
+                ) : (
+                  <div className="flex items-center justify-center h-full text-muted-foreground">
+                    Nenhum compartilhamento ainda
                   </div>
-                  <div className="text-sm text-muted-foreground">
-                    {product.click_count || 0} cliques
-                  </div>
-                </div>
-              ))}
-              {(!topProducts || topProducts.length === 0) && (
-                <p className="text-center text-muted-foreground py-8">
-                  Nenhum produto cadastrado ainda
-                </p>
-              )}
-            </div>
-          </CardContent>
-        </Card>
+                )}
+              </div>
+            </CardContent>
+          </Card>
+        </div>
       </div>
     </AdminLayout>
   );

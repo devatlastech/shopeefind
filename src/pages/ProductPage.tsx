@@ -1,9 +1,7 @@
 import { useParams, Link } from "react-router-dom";
 import {
-  ArrowLeft,
   Heart,
   ExternalLink,
-  Share2,
   ChevronLeft,
   ChevronRight,
 } from "lucide-react";
@@ -14,6 +12,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { ProductGrid } from "@/components/products/ProductGrid";
+import { ShareButtons } from "@/components/products/ShareButtons";
 import { useProduct, useProducts } from "@/hooks/useProducts";
 import { useFavorites } from "@/hooks/useFavorites";
 import { supabase } from "@/integrations/supabase/client";
@@ -48,25 +47,6 @@ export default function ProductPage() {
     window.open(product.affiliate_link, "_blank", "noopener,noreferrer");
   };
 
-  const handleShare = async () => {
-    if (navigator.share) {
-      try {
-        await navigator.share({
-          title: product?.title,
-          text: `Confira este produto com ${product?.discount_percentage}% de desconto!`,
-          url: window.location.href,
-        });
-      } catch {
-        // User cancelled
-      }
-    } else {
-      await navigator.clipboard.writeText(window.location.href);
-      toast({
-        title: "Link copiado!",
-        description: "O link do produto foi copiado para sua área de transferência.",
-      });
-    }
-  };
 
   const formatPrice = (price: number) => {
     return new Intl.NumberFormat("pt-BR", {
@@ -279,27 +259,37 @@ export default function ProductPage() {
                 )}
 
                 {/* Actions */}
-                <div className="flex flex-col sm:flex-row gap-3 pt-4">
-                  <Button
-                    size="lg"
-                    className="flex-1 gap-2 text-base"
-                    onClick={handleBuyClick}
-                  >
-                    <ExternalLink className="h-5 w-5" />
-                    Comprar na Shopee
-                  </Button>
-                  <Button
-                    size="lg"
-                    variant="outline"
-                    className={cn("gap-2", favorite && "text-primary border-primary")}
-                    onClick={() => toggleFavorite(product.id)}
-                  >
-                    <Heart className={cn("h-5 w-5", favorite && "fill-current")} />
-                    {favorite ? "Favoritado" : "Favoritar"}
-                  </Button>
-                  <Button size="lg" variant="ghost" onClick={handleShare}>
-                    <Share2 className="h-5 w-5" />
-                  </Button>
+                <div className="flex flex-col gap-4 pt-4">
+                  <div className="flex flex-col sm:flex-row gap-3">
+                    <Button
+                      size="lg"
+                      className="flex-1 gap-2 text-base"
+                      onClick={handleBuyClick}
+                    >
+                      <ExternalLink className="h-5 w-5" />
+                      Comprar na Shopee
+                    </Button>
+                    <Button
+                      size="lg"
+                      variant="outline"
+                      className={cn("gap-2", favorite && "text-primary border-primary")}
+                      onClick={() => toggleFavorite(product.id)}
+                    >
+                      <Heart className={cn("h-5 w-5", favorite && "fill-current")} />
+                      {favorite ? "Favoritado" : "Favoritar"}
+                    </Button>
+                  </div>
+                  
+                  {/* Share Buttons */}
+                  <div className="border-t pt-4">
+                    <p className="text-sm text-muted-foreground mb-3">Compartilhar</p>
+                    <ShareButtons
+                      productId={product.id}
+                      productTitle={product.title}
+                      discountPercentage={product.discount_percentage}
+                      inline
+                    />
+                  </div>
                 </div>
 
                 {/* Tags */}

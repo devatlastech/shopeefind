@@ -30,7 +30,7 @@ export default function LoginPage() {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const { toast } = useToast();
-  const { user, isAdmin, signIn } = useAuth();
+  const { user, isAdmin, loading: authLoading, signIn } = useAuth();
 
   const form = useForm<LoginFormValues>({
     resolver: zodResolver(loginSchema),
@@ -41,10 +41,14 @@ export default function LoginPage() {
   });
 
   useEffect(() => {
-    if (user && isAdmin) {
-      navigate("/admin");
+    if (!authLoading && user) {
+      if (isAdmin) {
+        navigate("/admin");
+      } else {
+        navigate("/");
+      }
     }
-  }, [user, isAdmin, navigate]);
+  }, [user, isAdmin, authLoading, navigate]);
 
   const onSubmit = async (values: LoginFormValues) => {
     setLoading(true);
@@ -61,19 +65,15 @@ export default function LoginPage() {
               : error.message,
           variant: "destructive",
         });
-      } else {
-        toast({
-          title: "Login realizado!",
-          description: "Bem-vindo de volta.",
-        });
+        setLoading(false);
       }
+      // Don't setLoading(false) on success - let the redirect happen
     } catch {
       toast({
         title: "Erro",
         description: "Ocorreu um erro ao fazer login.",
         variant: "destructive",
       });
-    } finally {
       setLoading(false);
     }
   };

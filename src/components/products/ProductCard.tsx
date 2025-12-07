@@ -1,11 +1,13 @@
-import { Heart, ExternalLink } from "lucide-react";
+import { Heart, ExternalLink, Share2 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { useFavorites } from "@/hooks/useFavorites";
 import { supabase } from "@/integrations/supabase/client";
 import type { Product, Category } from "@/types/database";
 import { cn } from "@/lib/utils";
+import { ShareButtons } from "./ShareButtons";
 
 interface ProductCardProps {
   product: Product & { category: Category | null };
@@ -81,18 +83,43 @@ export function ProductCard({ product, className }: ProductCardProps) {
           </Badge>
         )}
 
-        {/* Favorite Button */}
-        <Button
-          variant="ghost"
-          size="icon"
-          className={cn(
-            "absolute right-2 bottom-2 h-8 w-8 rounded-full bg-background/80 backdrop-blur-sm transition-all",
-            favorite && "text-primary"
-          )}
-          onClick={handleFavoriteClick}
-        >
-          <Heart className={cn("h-4 w-4", favorite && "fill-current")} />
-        </Button>
+        {/* Action Buttons */}
+        <div className="absolute right-2 bottom-2 flex gap-1">
+          <Popover>
+            <PopoverTrigger asChild>
+              <Button
+                variant="ghost"
+                size="icon"
+                className="h-8 w-8 rounded-full bg-background/80 backdrop-blur-sm transition-all hover:bg-background"
+                onClick={(e) => e.preventDefault()}
+              >
+                <Share2 className="h-4 w-4" />
+              </Button>
+            </PopoverTrigger>
+            <PopoverContent 
+              className="w-auto p-0" 
+              align="end"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <ShareButtons
+                productId={product.id}
+                productTitle={product.title}
+                discountPercentage={product.discount_percentage}
+              />
+            </PopoverContent>
+          </Popover>
+          <Button
+            variant="ghost"
+            size="icon"
+            className={cn(
+              "h-8 w-8 rounded-full bg-background/80 backdrop-blur-sm transition-all",
+              favorite && "text-primary"
+            )}
+            onClick={handleFavoriteClick}
+          >
+            <Heart className={cn("h-4 w-4", favorite && "fill-current")} />
+          </Button>
+        </div>
       </div>
 
       {/* Content */}

@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
 import Index from "./pages/Index";
 import ProductPage from "./pages/ProductPage";
+import ProductRedirect from "./pages/ProductRedirect";
 import CategoryPage from "./pages/CategoryPage";
 import FavoritesPage from "./pages/FavoritesPage";
 import LoginPage from "./pages/auth/LoginPage";
@@ -27,6 +28,7 @@ const App = () => (
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/produto/:id" element={<ProductPage />} />
+            <Route path="/p/:id" element={<ProductRedirect />} />
             <Route path="/categoria/:slug" element={<CategoryPage />} />
             <Route path="/favoritos" element={<FavoritesPage />} />
             <Route path="/login" element={<LoginPage />} />

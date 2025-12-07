@@ -13,6 +13,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { ImageUpload } from "@/components/admin/ImageUpload";
+import { VideoUpload } from "@/components/admin/VideoUpload";
 import { toast } from "sonner";
 import { Loader2 } from "lucide-react";
 
@@ -207,14 +208,37 @@ export function ProductForm({ product, onSuccess }: ProductFormProps) {
           />
         </div>
 
-        <div>
-          <Label htmlFor="video_url">URL do Vídeo</Label>
-          <Input
-            id="video_url"
-            value={formData.video_url}
-            onChange={(e) => setFormData({ ...formData, video_url: e.target.value })}
-            placeholder="https://youtube.com/..."
-          />
+        <div className="space-y-4">
+          <Label>Vídeo do Produto</Label>
+          
+          <div className="space-y-2">
+            <Label htmlFor="video_url" className="text-sm font-normal text-muted-foreground">
+              URL do YouTube (opcional)
+            </Label>
+            <Input
+              id="video_url"
+              value={formData.video_url.includes('youtube.com') || formData.video_url.includes('youtu.be') ? formData.video_url : ''}
+              onChange={(e) => setFormData({ ...formData, video_url: e.target.value })}
+              placeholder="https://youtube.com/watch?v=..."
+              disabled={formData.video_url && !formData.video_url.includes('youtube') && !formData.video_url.includes('youtu.be')}
+            />
+          </div>
+          
+          <div className="relative flex items-center gap-4">
+            <div className="flex-1 h-px bg-border" />
+            <span className="text-xs text-muted-foreground">ou</span>
+            <div className="flex-1 h-px bg-border" />
+          </div>
+          
+          <div className="space-y-2">
+            <Label className="text-sm font-normal text-muted-foreground">
+              Enviar vídeo do dispositivo
+            </Label>
+            <VideoUpload
+              videoUrl={formData.video_url}
+              onVideoChange={(url) => setFormData({ ...formData, video_url: url })}
+            />
+          </div>
         </div>
 
         <div className="grid grid-cols-2 gap-4">

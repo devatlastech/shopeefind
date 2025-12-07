@@ -30,7 +30,7 @@ export default function LoginPage() {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const { toast } = useToast();
-  const { user, isAdmin, loading: authLoading, signIn } = useAuth();
+  const { user, isAdmin, loading: authLoading, adminChecked, signIn } = useAuth();
 
   const form = useForm<LoginFormValues>({
     resolver: zodResolver(loginSchema),
@@ -41,14 +41,15 @@ export default function LoginPage() {
   });
 
   useEffect(() => {
-    if (!authLoading && user) {
+    // Only redirect after admin check is complete
+    if (!authLoading && user && adminChecked) {
       if (isAdmin) {
         navigate("/admin");
       } else {
         navigate("/");
       }
     }
-  }, [user, isAdmin, authLoading, navigate]);
+  }, [user, isAdmin, authLoading, adminChecked, navigate]);
 
   const onSubmit = async (values: LoginFormValues) => {
     setLoading(true);

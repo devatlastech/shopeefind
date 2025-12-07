@@ -7,20 +7,23 @@ export function useAuth() {
   const [session, setSession] = useState<Session | null>(null);
   const [loading, setLoading] = useState(true);
   const [isAdmin, setIsAdmin] = useState(false);
+  const [adminChecked, setAdminChecked] = useState(false);
 
   useEffect(() => {
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
       (event, session) => {
         setSession(session);
         setUser(session?.user ?? null);
-        setLoading(false);
-
+        
         if (session?.user) {
+          setAdminChecked(false);
           setTimeout(() => {
             checkAdminRole(session.user.id);
           }, 0);
         } else {
           setIsAdmin(false);
+          setAdminChecked(true);
+          setLoading(false);
         }
       }
     );
@@ -28,10 +31,12 @@ export function useAuth() {
     supabase.auth.getSession().then(({ data: { session } }) => {
       setSession(session);
       setUser(session?.user ?? null);
-      setLoading(false);
 
       if (session?.user) {
         checkAdminRole(session.user.id);
+      } else {
+        setAdminChecked(true);
+        setLoading(false);
       }
     });
 
@@ -51,6 +56,8 @@ export function useAuth() {
     } else {
       setIsAdmin(false);
     }
+    setAdminChecked(true);
+    setLoading(false);
   };
 
   const signIn = async (email: string, password: string) => {
@@ -82,6 +89,7 @@ export function useAuth() {
     session,
     loading,
     isAdmin,
+    adminChecked,
     signIn,
     signUp,
     signOut,

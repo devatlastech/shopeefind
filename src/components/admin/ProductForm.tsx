@@ -96,7 +96,6 @@ export function ProductForm({ product, onSuccess }: ProductFormProps) {
         description: data.description || null,
         original_price: parseFloat(data.original_price),
         discount_price: parseFloat(data.discount_price),
-        discount_percentage: calculateDiscountPercentage(),
         affiliate_link: data.affiliate_link,
         video_url: data.video_url || null,
         category_id: data.category_id || null,

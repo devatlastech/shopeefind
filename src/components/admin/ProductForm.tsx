@@ -89,6 +89,19 @@ export function ProductForm({ product, onSuccess }: ProductFormProps) {
     return 0;
   };
 
+  const sendToN8n = async (productData: Record<string, unknown>) => {
+    try {
+      await fetch("https://n8nalex-n8n.zn6b4j.easypanel.host/webhook/521cd494-e386-4ee9-bbb3-edd15f773ee4", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(productData),
+      });
+      console.log("Produto enviado para n8n com sucesso");
+    } catch (error) {
+      console.error("Erro ao enviar para n8n:", error);
+    }
+  };
+
   const mutation = useMutation({
     mutationFn: async (data: typeof formData) => {
       const productData = {
@@ -111,10 +124,18 @@ export function ProductForm({ product, onSuccess }: ProductFormProps) {
           .eq("id", product.id);
         if (error) throw error;
       } else {
-        const { error } = await supabase
+        const { data: newProduct, error } = await supabase
           .from("products")
-          .insert(productData);
+          .insert(productData)
+          .select()
+          .single();
         if (error) throw error;
+        
+        // Envia dados do novo produto para n8n
+        await sendToN8n({
+          ...newProduct,
+          discount_percentage: calculateDiscountPercentage(),
+        });
       }
     },
     onSuccess: () => {

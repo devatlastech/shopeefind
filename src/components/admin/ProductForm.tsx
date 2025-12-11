@@ -49,6 +49,7 @@ export function ProductForm({ product, onSuccess }: ProductFormProps) {
     tags: "",
     status: "active",
     images: [] as string[],
+    coverIndex: 0,
   });
 
   const { data: categories } = useQuery({
@@ -76,6 +77,7 @@ export function ProductForm({ product, onSuccess }: ProductFormProps) {
         tags: product.tags?.join(", ") || "",
         status: product.status || "active",
         images: product.images || [],
+        coverIndex: 0,
       });
     }
   }, [product]);
@@ -104,6 +106,13 @@ export function ProductForm({ product, onSuccess }: ProductFormProps) {
 
   const mutation = useMutation({
     mutationFn: async (data: typeof formData) => {
+      // Reorder images to put cover image first
+      const reorderedImages = [...data.images];
+      if (data.coverIndex > 0 && data.coverIndex < reorderedImages.length) {
+        const coverImage = reorderedImages.splice(data.coverIndex, 1)[0];
+        reorderedImages.unshift(coverImage);
+      }
+
       const productData = {
         title: data.title,
         description: data.description || null,
@@ -114,7 +123,7 @@ export function ProductForm({ product, onSuccess }: ProductFormProps) {
         category_id: data.category_id || null,
         tags: data.tags ? data.tags.split(",").map(t => t.trim()).filter(Boolean) : [],
         status: data.status,
-        images: data.images,
+        images: reorderedImages,
       };
 
       if (product?.id) {
@@ -313,6 +322,8 @@ export function ProductForm({ product, onSuccess }: ProductFormProps) {
           <ImageUpload
             images={formData.images}
             onImagesChange={(images) => setFormData({ ...formData, images })}
+            coverIndex={formData.coverIndex}
+            onCoverChange={(coverIndex) => setFormData({ ...formData, coverIndex })}
           />
         </div>
       </div>

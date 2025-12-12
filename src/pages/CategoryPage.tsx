@@ -6,7 +6,8 @@ import { ProductGrid } from "@/components/products/ProductGrid";
 import { ProductFilters, FilterValues } from "@/components/filters/ProductFilters";
 import { useCategory } from "@/hooks/useCategories";
 import { useProducts } from "@/hooks/useProducts";
-import { Helmet } from "react-helmet-async";
+import { SEOHead } from "@/components/seo/SEOHead";
+import { generateCategorySchema, generateBreadcrumbSchema } from "@/lib/structuredData";
 
 export default function CategoryPage() {
   const { slug } = useParams<{ slug: string }>();
@@ -55,15 +56,28 @@ export default function CategoryPage() {
     );
   }
 
+  const breadcrumbItems = [
+    { name: "Início", url: "/" },
+    { name: category.name, url: `/categoria/${category.slug}` },
+  ];
+
+  const combinedStructuredData = {
+    "@context": "https://schema.org",
+    "@graph": [
+      generateCategorySchema(category, products?.length || 0),
+      generateBreadcrumbSchema(breadcrumbItems),
+    ],
+  };
+
   return (
     <>
-      <Helmet>
-        <title>{category.name} - ShopeeFind</title>
-        <meta
-          name="description"
-          content={`Encontre os melhores produtos de ${category.name} com descontos incríveis. Ofertas atualizadas diariamente.`}
-        />
-      </Helmet>
+      <SEOHead
+        title={`${category.name} - Ofertas e Descontos`}
+        description={`Encontre os melhores produtos de ${category.name} com descontos de até 70%. ${products?.length || 0} ofertas atualizadas diariamente na Shopee.`}
+        canonicalUrl={`/categoria/${category.slug}`}
+        keywords={[category.name.toLowerCase(), `${category.name.toLowerCase()} shopee`, `desconto ${category.name.toLowerCase()}`]}
+        structuredData={combinedStructuredData}
+      />
 
       <div className="min-h-screen flex flex-col">
         <Header />

@@ -7,7 +7,7 @@ import { useFavorites } from "@/hooks/useFavorites";
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
-import { Helmet } from "react-helmet-async";
+import { SEOHead } from "@/components/seo/SEOHead";
 import type { Product, Category } from "@/types/database";
 
 export default function FavoritesPage() {
@@ -31,13 +31,12 @@ export default function FavoritesPage() {
 
   return (
     <>
-      <Helmet>
-        <title>Meus Favoritos - ShopeeFind</title>
-        <meta
-          name="description"
-          content="Veja seus produtos favoritos salvos no ShopeeFind."
-        />
-      </Helmet>
+      <SEOHead
+        title="Meus Favoritos"
+        description="Veja seus produtos favoritos salvos no ShopeeFind. Acesse rapidamente suas ofertas preferidas."
+        canonicalUrl="/favoritos"
+        noIndex={true}
+      />
 
       <div className="min-h-screen flex flex-col">
         <Header />

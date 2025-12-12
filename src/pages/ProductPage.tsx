@@ -18,7 +18,8 @@ import { useFavorites } from "@/hooks/useFavorites";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import { cn } from "@/lib/utils";
-import { Helmet } from "react-helmet-async";
+import { SEOHead } from "@/components/seo/SEOHead";
+import { generateProductSchema, generateBreadcrumbSchema } from "@/lib/structuredData";
 
 export default function ProductPage() {
   const { id } = useParams<{ id: string }>();
@@ -110,15 +111,31 @@ export default function ProductPage() {
 
   const filteredRelated = relatedProducts?.filter((p) => p.id !== product.id);
 
+  const breadcrumbItems = [
+    { name: "Início", url: "/" },
+    ...(product.category ? [{ name: product.category.name, url: `/categoria/${product.category.slug}` }] : []),
+    { name: product.title, url: `/produto/${product.id}` },
+  ];
+
+  const combinedStructuredData = {
+    "@context": "https://schema.org",
+    "@graph": [
+      generateProductSchema(product),
+      generateBreadcrumbSchema(breadcrumbItems),
+    ],
+  };
+
   return (
     <>
-      <Helmet>
-        <title>{product.title} - ShopeeFind</title>
-        <meta
-          name="description"
-          content={`${product.title} com ${product.discount_percentage}% de desconto. De ${formatPrice(product.original_price)} por ${formatPrice(product.discount_price)}`}
-        />
-      </Helmet>
+      <SEOHead
+        title={product.title}
+        description={`${product.title} com ${Math.round(product.discount_percentage)}% de desconto. De ${formatPrice(product.original_price)} por ${formatPrice(product.discount_price)}. Compre agora na Shopee!`}
+        canonicalUrl={`/produto/${product.id}`}
+        ogImage={product.images?.[0]}
+        ogType="product"
+        keywords={product.tags || []}
+        structuredData={combinedStructuredData}
+      />
 
       <div className="min-h-screen flex flex-col">
         <Header />

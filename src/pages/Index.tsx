@@ -7,9 +7,9 @@ import { NewsletterSection } from "@/components/home/NewsletterSection";
 import { ProductGrid } from "@/components/products/ProductGrid";
 import { ProductFilters, FilterValues } from "@/components/filters/ProductFilters";
 import { useFeaturedProducts, useBestDiscounts, useProducts } from "@/hooks/useProducts";
-import { ArrowRight, TrendingDown, Star } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Helmet } from "react-helmet-async";
+import { TrendingDown, Star } from "lucide-react";
+import { SEOHead } from "@/components/seo/SEOHead";
+import { generateWebSiteSchema, generateOrganizationSchema } from "@/lib/structuredData";
 
 export default function Index() {
   const [filters, setFilters] = useState<FilterValues>({});
@@ -25,19 +25,26 @@ export default function Index() {
 
   const handleSearch = (query: string) => {
     setSearchQuery(query);
-    // Scroll to products section
     document.getElementById("produtos")?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  const combinedStructuredData = {
+    "@context": "https://schema.org",
+    "@graph": [
+      generateOrganizationSchema(),
+      generateWebSiteSchema(),
+    ],
   };
 
   return (
     <>
-      <Helmet>
-        <title>ShopeeFind - As Melhores Ofertas e Descontos da Shopee</title>
-        <meta
-          name="description"
-          content="Encontre as melhores ofertas e descontos da Shopee em um só lugar. Produtos com até 70% de desconto, atualizados diariamente."
-        />
-      </Helmet>
+      <SEOHead
+        title="ShopeeFind - As Melhores Ofertas e Descontos da Shopee"
+        description="Encontre as melhores ofertas e descontos da Shopee em um só lugar. Produtos com até 70% de desconto, atualizados diariamente. Eletrônicos, moda, casa e muito mais!"
+        canonicalUrl="/"
+        keywords={["achados shopee", "ofertas do dia", "promoção shopee", "melhores preços"]}
+        structuredData={combinedStructuredData}
+      />
 
       <div className="min-h-screen flex flex-col">
         <Header onSearch={handleSearch} />

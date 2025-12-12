@@ -59,9 +59,11 @@ export function ProductCard({ product, className }: ProductCardProps) {
         {product.images?.[0] ? (
           <img
             src={product.images[0]}
-            alt={product.title}
+            alt={`${product.title} - ${product.category?.name || 'Produto'} com ${Math.round(product.discount_percentage)}% de desconto`}
             className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
             loading="lazy"
+            width="300"
+            height="300"
           />
         ) : (
           <div className="flex h-full w-full items-center justify-center">

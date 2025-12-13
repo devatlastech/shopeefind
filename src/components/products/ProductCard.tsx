@@ -155,11 +155,11 @@ export function ProductCard({ product, className }: ProductCardProps) {
         {/* Buy Button */}
         <Button
           size="sm"
-          className="mt-3 w-full gap-1 sm:gap-2 text-xs sm:text-sm px-2 sm:px-4"
+          className="mt-3 w-full gap-1 sm:gap-2 text-xs sm:text-sm px-2 sm:px-4 whitespace-normal text-center"
           onClick={handleBuyClick}
         >
           <ExternalLink className="h-3 w-3 sm:h-4 sm:w-4 flex-shrink-0" />
-          <span className="truncate">Comprar na Shopee</span>
+          <span className="leading-snug">Comprar na Shopee</span>
         </Button>
       </div>
     </Link>

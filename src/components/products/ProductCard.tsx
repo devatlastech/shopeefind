@@ -93,7 +93,10 @@ export function ProductCard({ product, className }: ProductCardProps) {
                 variant="ghost"
                 size="icon"
                 className="h-8 w-8 rounded-full bg-background/80 backdrop-blur-sm transition-all hover:bg-background"
-                onClick={(e) => e.preventDefault()}
+                onClick={(e) => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                }}
               >
                 <Share2 className="h-4 w-4" />
               </Button>

@@ -52,17 +52,23 @@ export function Footer() {
             </nav>
           </div>
 
-          {/* Info */}
+          {/* Legal */}
           <div className="space-y-4">
-            <h3 className="font-semibold">Informações</h3>
-            <div className="text-sm text-muted-foreground space-y-2">
-              <p>
-                Este site contém links de afiliados. Ao clicar e comprar, você nos
-                ajuda a manter o site funcionando.
-              </p>
-              <p className="text-xs">
-                Shopee e suas marcas são propriedade da Sea Limited.
-              </p>
+            <h3 className="font-semibold">Legal</h3>
+            <nav className="flex flex-col gap-2 text-sm text-muted-foreground">
+              <Link to="/politica-de-privacidade" className="hover:text-primary transition-colors">
+                Política de Privacidade
+              </Link>
+              <Link to="/termos-de-uso" className="hover:text-primary transition-colors">
+                Termos de Uso
+              </Link>
+              <Link to="/politica-de-cookies" className="hover:text-primary transition-colors">
+                Política de Cookies
+              </Link>
+            </nav>
+            <div className="text-xs text-muted-foreground mt-4">
+              <p>Este site contém links de afiliados.</p>
+              <p className="mt-1">Shopee® é marca da Sea Limited.</p>
             </div>
           </div>
         </div>

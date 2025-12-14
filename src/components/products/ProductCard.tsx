@@ -86,17 +86,13 @@ export function ProductCard({ product, className }: ProductCardProps) {
         )}
 
         {/* Action Buttons */}
-        <div className="absolute right-2 bottom-2 flex gap-1">
+        <div className="absolute right-2 bottom-2 flex gap-1" onClick={(e) => e.stopPropagation()}>
           <Popover>
             <PopoverTrigger asChild>
               <Button
                 variant="ghost"
                 size="icon"
                 className="h-8 w-8 rounded-full bg-background/80 backdrop-blur-sm transition-all hover:bg-background"
-                onClick={(e) => {
-                  e.preventDefault();
-                  e.stopPropagation();
-                }}
               >
                 <Share2 className="h-4 w-4" />
               </Button>
@@ -104,7 +100,6 @@ export function ProductCard({ product, className }: ProductCardProps) {
             <PopoverContent 
               className="w-auto p-0" 
               align="end"
-              onClick={(e) => e.stopPropagation()}
             >
               <ShareButtons
                 productId={product.id}

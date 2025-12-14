@@ -86,7 +86,13 @@ export function ProductCard({ product, className }: ProductCardProps) {
         )}
 
         {/* Action Buttons */}
-        <div className="absolute right-2 bottom-2 flex gap-1" onClick={(e) => e.stopPropagation()}>
+        <div
+          className="absolute right-2 bottom-2 flex gap-1"
+          onClick={(e) => {
+            e.preventDefault();
+            e.stopPropagation();
+          }}
+        >
           <Popover>
             <PopoverTrigger asChild>
               <Button

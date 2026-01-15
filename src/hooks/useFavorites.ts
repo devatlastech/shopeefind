@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from "react";
 
-const FAVORITES_KEY = "shopeefind_favorites";
+const FAVORITES_KEY = "shopfind_favorites";
 
 export function useFavorites() {
   const [favorites, setFavorites] = useState<string[]>([]);

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { X } from "lucide-react";
 
-const COOKIE_CONSENT_KEY = "shopeefind_cookie_consent";
+const COOKIE_CONSENT_KEY = "shopfind_cookie_consent";
 
 export function CookieConsent() {
   const [isVisible, setIsVisible] = useState(false);

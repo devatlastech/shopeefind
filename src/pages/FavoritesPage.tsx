@@ -33,7 +33,7 @@ export default function FavoritesPage() {
     <>
       <SEOHead
         title="Meus Favoritos"
-        description="Veja seus produtos favoritos salvos no ShopeeFind. Acesse rapidamente suas ofertas preferidas."
+        description="Veja seus produtos favoritos salvos no ShopFind. Acesse rapidamente suas ofertas preferidas."
         canonicalUrl="/favoritos"
         noIndex={true}
       />

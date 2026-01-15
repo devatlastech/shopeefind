@@ -1,129 +1,86 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://shopeefind.com.br/</loc>
+    <loc>https://shopfind.com.br/</loc>
+    <lastmod>2025-01-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://shopeefind.com.br/favoritos</loc>
+    <loc>https://shopfind.com.br/favoritos</loc>
+    <lastmod>2025-01-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://shopeefind.com.br/politica-de-privacidade</loc>
+    <loc>https://shopfind.com.br/politica-de-privacidade</loc>
+    <lastmod>2025-01-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://shopeefind.com.br/termos-de-uso</loc>
+    <loc>https://shopfind.com.br/termos-de-uso</loc>
+    <lastmod>2025-01-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://shopeefind.com.br/politica-de-cookies</loc>
+    <loc>https://shopfind.com.br/politica-de-cookies</loc>
+    <lastmod>2025-01-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://shopeefind.com.br/categoria/eletronicos</loc>
+    <loc>https://shopfind.com.br/categoria/eletronicos</loc>
+    <lastmod>2025-01-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://shopeefind.com.br/categoria/moda</loc>
+    <loc>https://shopfind.com.br/categoria/moda</loc>
+    <lastmod>2025-01-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://shopeefind.com.br/categoria/casa-decoracao</loc>
+    <loc>https://shopfind.com.br/categoria/casa-decoracao</loc>
+    <lastmod>2025-01-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://shopeefind.com.br/categoria/beleza</loc>
+    <loc>https://shopfind.com.br/categoria/beleza</loc>
+    <lastmod>2025-01-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://shopeefind.com.br/categoria/esportes</loc>
+    <loc>https://shopfind.com.br/categoria/esportes</loc>
+    <lastmod>2025-01-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://shopeefind.com.br/categoria/infantil</loc>
+    <loc>https://shopfind.com.br/categoria/infantil</loc>
+    <lastmod>2025-01-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://shopeefind.com.br/categoria/automotivo</loc>
+    <loc>https://shopfind.com.br/categoria/automotivo</loc>
+    <lastmod>2025-01-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://shopeefind.com.br/categoria/outros</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.8</priority>
-  </url>
-</urlset>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://shopeefind.com.br/</loc>
-    <lastmod>2025-01-01</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://shopeefind.com.br/favoritos</loc>
-    <lastmod>2025-01-01</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://shopeefind.com.br/categoria/eletronicos</loc>
-    <lastmod>2025-01-01</lastmod>
+    <loc>https://shopfind.com.br/categoria/brinquedos</loc>
+    <lastmod>2025-01-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://shopeefind.com.br/categoria/moda</loc>
-    <lastmod>2025-01-01</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://shopeefind.com.br/categoria/casa-e-decoracao</loc>
-    <lastmod>2025-01-01</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://shopeefind.com.br/categoria/beleza</loc>
-    <lastmod>2025-01-01</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://shopeefind.com.br/categoria/esportes</loc>
-    <lastmod>2025-01-01</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://shopeefind.com.br/categoria/brinquedos</loc>
-    <lastmod>2025-01-01</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://shopeefind.com.br/categoria/pets</loc>
-    <lastmod>2025-01-01</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://shopeefind.com.br/categoria/automotivo</loc>
-    <lastmod>2025-01-01</lastmod>
+    <loc>https://shopfind.com.br/categoria/pets</loc>
+    <lastmod>2025-01-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>

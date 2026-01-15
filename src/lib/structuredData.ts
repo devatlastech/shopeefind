@@ -1,8 +1,8 @@
 import type { Product, Category } from "@/types/database";
 
-const SITE_NAME = "ShopeeFind";
-const SITE_URL = "https://shopeefind.com.br";
-const LOGO_URL = "https://shopeefind.com.br/logo.png";
+const SITE_NAME = "ShopFind";
+const SITE_URL = "https://shopfind.com.br";
+const LOGO_URL = "https://shopfind.com.br/logo.png";
 
 export function generateOrganizationSchema() {
   return {
@@ -11,7 +11,7 @@ export function generateOrganizationSchema() {
     name: SITE_NAME,
     url: SITE_URL,
     logo: LOGO_URL,
-    description: "ShopeeFind - Encontre as melhores ofertas e descontos da Shopee em um só lugar.",
+    description: "ShopFind - Encontre as melhores ofertas e descontos da Shopee em um só lugar.",
     sameAs: [
       "https://whatsapp.com/channel/0029Vb78IgsDDmFcchlIOP0K",
     ],

@@ -39,7 +39,7 @@ export default function Index() {
   return (
     <>
       <SEOHead
-        title="ShopeeFind - As Melhores Ofertas e Descontos da Shopee"
+        title="ShopFind - As Melhores Ofertas e Descontos da Shopee"
         description="Encontre as melhores ofertas e descontos da Shopee em um só lugar. Produtos com até 70% de desconto, atualizados diariamente. Eletrônicos, moda, casa e muito mais!"
         canonicalUrl="/"
         keywords={["achados shopee", "ofertas do dia", "promoção shopee", "melhores preços"]}

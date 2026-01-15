@@ -31,7 +31,7 @@ export function Header({ onSearch }: HeaderProps) {
             <span className="text-lg font-bold text-primary-foreground">S</span>
           </div>
           <span className="hidden font-bold text-xl sm:inline-block">
-            Shopee<span className="text-primary">Find</span>
+            Shop<span className="text-primary">Find</span>
           </span>
         </Link>
 

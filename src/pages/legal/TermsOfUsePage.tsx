@@ -7,7 +7,7 @@ export default function TermsOfUsePage() {
     <>
       <SEOHead
         title="Termos de Uso"
-        description="Leia nossos termos de uso e condições para utilização do site ShopeeFind."
+        description="Leia nossos termos de uso e condições para utilização do site ShopFind."
         canonicalUrl="/termos-de-uso"
         noIndex={false}
       />
@@ -21,14 +21,14 @@ export default function TermsOfUsePage() {
             <section className="mb-8">
               <h2 className="text-xl font-semibold mt-6 mb-4">1. Aceitação dos Termos</h2>
               <p className="text-muted-foreground mb-4">
-                Ao acessar e usar o site ShopeeFind, você concorda em cumprir e estar sujeito a estes Termos de Uso. Se você não concordar com qualquer parte destes termos, não deverá usar nosso site.
+                Ao acessar e usar o site ShopFind, você concorda em cumprir e estar sujeito a estes Termos de Uso. Se você não concordar com qualquer parte destes termos, não deverá usar nosso site.
               </p>
             </section>
 
             <section className="mb-8">
               <h2 className="text-xl font-semibold mt-6 mb-4">2. Descrição do Serviço</h2>
               <p className="text-muted-foreground mb-4">
-                O ShopeeFind é um site de curadoria de ofertas que apresenta produtos disponíveis na plataforma Shopee. Atuamos como afiliados da Shopee, o que significa que recebemos uma comissão quando você realiza uma compra através de nossos links.
+                O ShopFind é um site de curadoria de ofertas que apresenta produtos disponíveis na plataforma Shopee. Atuamos como afiliados da Shopee, o que significa que recebemos uma comissão quando você realiza uma compra através de nossos links.
               </p>
             </section>
 
@@ -49,7 +49,7 @@ export default function TermsOfUsePage() {
             <section className="mb-8">
               <h2 className="text-xl font-semibold mt-6 mb-4">5. Responsabilidades</h2>
               <p className="text-muted-foreground mb-4">
-                O ShopeeFind não é responsável por:
+                O ShopFind não é responsável por:
               </p>
               <ul className="list-disc pl-6 text-muted-foreground space-y-2">
                 <li>Transações realizadas na plataforma Shopee</li>
@@ -62,7 +62,7 @@ export default function TermsOfUsePage() {
             <section className="mb-8">
               <h2 className="text-xl font-semibold mt-6 mb-4">6. Propriedade Intelectual</h2>
               <p className="text-muted-foreground mb-4">
-                Todo o conteúdo original do ShopeeFind, incluindo textos, gráficos e design, é de nossa propriedade. As imagens dos produtos e marcas da Shopee pertencem aos seus respectivos proprietários.
+                Todo o conteúdo original do ShopFind, incluindo textos, gráficos e design, é de nossa propriedade. As imagens dos produtos e marcas da Shopee pertencem aos seus respectivos proprietários.
               </p>
             </section>
 

@@ -12,7 +12,7 @@ export function Footer() {
                 <span className="text-lg font-bold text-primary-foreground">S</span>
               </div>
               <span className="font-bold text-xl">
-                Shopee<span className="text-primary">Find</span>
+                Shop<span className="text-primary">Find</span>
               </span>
             </Link>
             <p className="text-sm text-muted-foreground">
@@ -74,7 +74,7 @@ export function Footer() {
         </div>
 
         <div className="mt-8 pt-8 border-t text-center text-sm text-muted-foreground">
-          <p>© {new Date().getFullYear()} ShopeeFind. Todos os direitos reservados.</p>
+          <p>© {new Date().getFullYear()} ShopFind. Todos os direitos reservados.</p>
         </div>
       </div>
     </footer>

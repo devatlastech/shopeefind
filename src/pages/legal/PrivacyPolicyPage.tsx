@@ -21,7 +21,7 @@ export default function PrivacyPolicyPage() {
             <section className="mb-8">
               <h2 className="text-xl font-semibold mt-6 mb-4">1. Introdução</h2>
               <p className="text-muted-foreground mb-4">
-                A ShopeeFind está comprometida em proteger sua privacidade. Esta Política de Privacidade explica como coletamos, usamos, divulgamos e protegemos suas informações pessoais quando você visita nosso site.
+                A ShopFind está comprometida em proteger sua privacidade. Esta Política de Privacidade explica como coletamos, usamos, divulgamos e protegemos suas informações pessoais quando você visita nosso site.
               </p>
             </section>
 

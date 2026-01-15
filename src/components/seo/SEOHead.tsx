@@ -11,9 +11,9 @@ interface SEOHeadProps {
   structuredData?: object;
 }
 
-const SITE_NAME = "ShopeeFind";
-const DEFAULT_OG_IMAGE = "https://shopeefind.com.br/og-image.png";
-const SITE_URL = "https://shopeefind.com.br";
+const SITE_NAME = "ShopFind";
+const DEFAULT_OG_IMAGE = "https://shopfind.com.br/og-image.png";
+const SITE_URL = "https://shopfind.com.br";
 
 export function SEOHead({
   title,

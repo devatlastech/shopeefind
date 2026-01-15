@@ -45,6 +45,19 @@
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <link rel="apple-touch-icon" sizes="180x180" href="/favicon.ico" />
     
+    <!-- Critical CSS - Inline for faster first paint -->
+    <style>
+      :root{--background:0 0% 100%;--foreground:240 10% 10%;--primary:14 100% 57%;--card:0 0% 100%;--muted:210 20% 96%}
+      .dark{--background:240 10% 6%;--foreground:0 0% 98%;--card:240 10% 8%;--muted:240 5% 16%}
+      *,::before,::after{box-sizing:border-box;border-width:0;border-style:solid}
+      html{line-height:1.5;-webkit-text-size-adjust:100%;font-family:system-ui,-apple-system,sans-serif}
+      body{margin:0;line-height:inherit;background-color:hsl(var(--background));color:hsl(var(--foreground));-webkit-font-smoothing:antialiased}
+      #root{min-height:100vh;display:flex;flex-direction:column}
+      .animate-pulse{animation:pulse 2s cubic-bezier(0.4,0,0.6,1) infinite}
+      @keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}
+      .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border-width:0}
+    </style>
+    
     <!-- Preconnect to external domains -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />

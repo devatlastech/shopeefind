@@ -12,9 +12,10 @@ import { ShareButtons } from "./ShareButtons";
 interface ProductCardProps {
   product: Product & { category: Category | null };
   className?: string;
+  priority?: boolean; // For above-the-fold images
 }
 
-export function ProductCard({ product, className }: ProductCardProps) {
+export function ProductCard({ product, className, priority = false }: ProductCardProps) {
   const { isFavorite, toggleFavorite } = useFavorites();
   const favorite = isFavorite(product.id);
 
@@ -61,7 +62,9 @@ export function ProductCard({ product, className }: ProductCardProps) {
             src={product.images[0]}
             alt={`${product.title} - ${product.category?.name || 'Produto'} com ${Math.round(product.discount_percentage)}% de desconto`}
             className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
-            loading="lazy"
+            loading={priority ? "eager" : "lazy"}
+            fetchPriority={priority ? "high" : "auto"}
+            decoding={priority ? "sync" : "async"}
             width="300"
             height="300"
           />

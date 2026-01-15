@@ -6,12 +6,14 @@ interface ProductGridProps {
   products?: (Product & { category: Category | null })[];
   loading?: boolean;
   emptyMessage?: string;
+  priorityCount?: number; // Number of products to load with priority (above-the-fold)
 }
 
 export function ProductGrid({
   products,
   loading,
   emptyMessage = "Nenhum produto encontrado",
+  priorityCount = 4, // First 4 products get priority loading
 }: ProductGridProps) {
   if (loading) {
     return <ProductGridSkeleton />;
@@ -34,7 +36,7 @@ export function ProductGrid({
           className="animate-fade-in"
           style={{ animationDelay: `${index * 50}ms` }}
         >
-          <ProductCard product={product} />
+          <ProductCard product={product} priority={index < priorityCount} />
         </div>
       ))}
     </div>

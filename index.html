@@ -4,6 +4,41 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
+    <!-- Preconnect FIRST for faster resource loading -->
+    <link rel="preconnect" href="https://fayumbomyqbidxcrsieu.supabase.co" />
+    <link rel="preconnect" href="https://fayumbomyqbidxcrsieu.supabase.co" crossorigin />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="dns-prefetch" href="https://cdn.gpteng.co" />
+    
+    <!-- Critical CSS - Inline for immediate first paint -->
+    <style>
+      :root{--background:0 0% 100%;--foreground:240 10% 10%;--primary:14 100% 57%;--card:0 0% 100%;--muted:210 20% 96%;--muted-foreground:215 16% 47%}
+      .dark{--background:240 10% 6%;--foreground:0 0% 98%;--card:240 10% 8%;--muted:240 5% 16%;--muted-foreground:215 20% 65%}
+      *,::before,::after{box-sizing:border-box;border-width:0;border-style:solid}
+      html{line-height:1.5;-webkit-text-size-adjust:100%;font-family:system-ui,-apple-system,BlinkMacSystemFont,sans-serif}
+      body{margin:0;line-height:inherit;background-color:hsl(var(--background));color:hsl(var(--foreground));-webkit-font-smoothing:antialiased}
+      #root{min-height:100vh;display:flex;flex-direction:column}
+      .loading-skeleton{display:none}
+      #root:empty+.loading-skeleton,.loading-skeleton:only-child{display:block}
+      .skeleton-header{height:64px;background:hsl(var(--card));border-bottom:1px solid hsl(var(--muted));display:flex;align-items:center;padding:0 16px}
+      .skeleton-logo{width:120px;height:32px;background:hsl(var(--muted));border-radius:6px}
+      .skeleton-hero{padding:48px 16px;text-align:center;background:linear-gradient(135deg,hsl(14 100% 57%),hsl(14 100% 45%))}
+      .skeleton-hero-title{height:40px;width:80%;max-width:400px;margin:0 auto 16px;background:hsla(0,0%,100%,0.2);border-radius:8px}
+      .skeleton-hero-text{height:20px;width:60%;max-width:300px;margin:0 auto;background:hsla(0,0%,100%,0.15);border-radius:4px}
+      .skeleton-grid{padding:24px 16px;display:grid;grid-template-columns:repeat(2,1fr);gap:16px;max-width:1200px;margin:0 auto}
+      .skeleton-card{background:hsl(var(--card));border-radius:12px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,0.1)}
+      .skeleton-card-img{aspect-ratio:1;background:hsl(var(--muted))}
+      .skeleton-card-content{padding:12px}
+      .skeleton-card-title{height:16px;background:hsl(var(--muted));border-radius:4px;margin-bottom:8px}
+      .skeleton-card-price{height:20px;width:60%;background:hsl(var(--muted));border-radius:4px}
+      .animate-pulse{animation:pulse 2s cubic-bezier(0.4,0,0.6,1) infinite}
+      @keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}
+      .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border-width:0}
+      @media(min-width:640px){.skeleton-grid{grid-template-columns:repeat(3,1fr)}}
+      @media(min-width:1024px){.skeleton-grid{grid-template-columns:repeat(4,1fr)}}
+    </style>
+    
     <!-- Primary Meta Tags -->
     <title>ShopFind - As Melhores Ofertas e Descontos da Shopee</title>
     <meta name="title" content="ShopFind - As Melhores Ofertas e Descontos da Shopee" />
@@ -44,26 +79,6 @@
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <link rel="apple-touch-icon" sizes="180x180" href="/favicon.ico" />
-    
-    <!-- Critical CSS - Inline for faster first paint -->
-    <style>
-      :root{--background:0 0% 100%;--foreground:240 10% 10%;--primary:14 100% 57%;--card:0 0% 100%;--muted:210 20% 96%}
-      .dark{--background:240 10% 6%;--foreground:0 0% 98%;--card:240 10% 8%;--muted:240 5% 16%}
-      *,::before,::after{box-sizing:border-box;border-width:0;border-style:solid}
-      html{line-height:1.5;-webkit-text-size-adjust:100%;font-family:system-ui,-apple-system,sans-serif}
-      body{margin:0;line-height:inherit;background-color:hsl(var(--background));color:hsl(var(--foreground));-webkit-font-smoothing:antialiased}
-      #root{min-height:100vh;display:flex;flex-direction:column}
-      .animate-pulse{animation:pulse 2s cubic-bezier(0.4,0,0.6,1) infinite}
-      @keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}
-      .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border-width:0}
-    </style>
-    
-    <!-- Preconnect to external domains -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="preconnect" href="https://fayumbomyqbidxcrsieu.supabase.co" crossorigin />
-    <link rel="dns-prefetch" href="https://fayumbomyqbidxcrsieu.supabase.co" />
-    <link rel="dns-prefetch" href="https://cdn.gpteng.co" />
     
     <!-- Structured Data - Organization -->
     <script type="application/ld+json">
@@ -106,6 +121,22 @@
 
   <body>
     <div id="root"></div>
+    <!-- Static loading skeleton for immediate FCP -->
+    <div class="loading-skeleton" aria-hidden="true">
+      <div class="skeleton-header animate-pulse">
+        <div class="skeleton-logo"></div>
+      </div>
+      <div class="skeleton-hero">
+        <div class="skeleton-hero-title animate-pulse"></div>
+        <div class="skeleton-hero-text animate-pulse"></div>
+      </div>
+      <div class="skeleton-grid">
+        <div class="skeleton-card animate-pulse"><div class="skeleton-card-img"></div><div class="skeleton-card-content"><div class="skeleton-card-title"></div><div class="skeleton-card-price"></div></div></div>
+        <div class="skeleton-card animate-pulse"><div class="skeleton-card-img"></div><div class="skeleton-card-content"><div class="skeleton-card-title"></div><div class="skeleton-card-price"></div></div></div>
+        <div class="skeleton-card animate-pulse"><div class="skeleton-card-img"></div><div class="skeleton-card-content"><div class="skeleton-card-title"></div><div class="skeleton-card-price"></div></div></div>
+        <div class="skeleton-card animate-pulse"><div class="skeleton-card-img"></div><div class="skeleton-card-content"><div class="skeleton-card-title"></div><div class="skeleton-card-price"></div></div></div>
+      </div>
+    </div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

@@ -1,17 +1,34 @@
 import { ArrowRight, Sparkles, TrendingDown, Gift } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+import heroVideo from "@/assets/hero-shopping-bg.mp4";
 
 export function HeroSection() {
   return (
-    <section className="relative overflow-hidden bg-gradient-to-br from-primary/5 via-background to-accent/5 py-16 md:py-24">
+    <section className="relative overflow-hidden py-16 md:py-24 min-h-[80vh] md:min-h-[70vh]">
+      {/* Background Video */}
+      <div className="absolute inset-0 z-0">
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover"
+          poster=""
+        >
+          <source src={heroVideo} type="video/mp4" />
+        </video>
+        {/* Overlay for better text readability */}
+        <div className="absolute inset-0 bg-gradient-to-b from-background/80 via-background/70 to-background/90" />
+      </div>
+      
       {/* Background decoration */}
-      <div className="absolute inset-0 overflow-hidden">
+      <div className="absolute inset-0 overflow-hidden z-[1]">
         <div className="absolute -top-40 -right-40 h-80 w-80 rounded-full bg-primary/10 blur-3xl" />
         <div className="absolute -bottom-40 -left-40 h-80 w-80 rounded-full bg-accent/10 blur-3xl" />
       </div>
 
-      <div className="container relative">
+      <div className="container relative z-10">
         <div className="mx-auto max-w-3xl text-center">
           {/* Badge */}
           <div className="inline-flex items-center gap-2 rounded-full border bg-background/80 backdrop-blur-sm px-4 py-1.5 text-sm mb-6 animate-fade-in">

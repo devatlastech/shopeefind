@@ -82,7 +82,7 @@ export default function LoginPage() {
   return (
     <>
       <Helmet>
-        <title>Login Admin - ShopeeFind</title>
+        <title>Login Admin - ShopFind</title>
       </Helmet>
 
       <div className="min-h-screen flex items-center justify-center bg-secondary/30 px-4">

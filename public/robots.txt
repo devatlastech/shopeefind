@@ -1,5 +1,5 @@
-# ShopeeFind - Robots.txt
-# https://shopeefind.com.br
+# ShopFind - Robots.txt
+# https://shopfind.com.br
 
 User-agent: *
 Allow: /
@@ -11,7 +11,7 @@ Disallow: /api/
 Crawl-delay: 1
 
 # Sitemaps
-Sitemap: https://shopeefind.com.br/sitemap.xml
+Sitemap: https://shopfind.com.br/sitemap.xml
 
 # Google
 User-agent: Googlebot

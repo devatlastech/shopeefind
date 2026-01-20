@@ -65,7 +65,7 @@ export function AdminLayout({ children }: AdminLayoutProps) {
         >
           {sidebarOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
         </Button>
-        <span className="font-semibold text-foreground">ShopeeFind Admin</span>
+        <span className="font-semibold text-foreground">ShopFind Admin</span>
         <div className="w-10" />
       </div>
 
@@ -87,7 +87,7 @@ export function AdminLayout({ children }: AdminLayoutProps) {
             <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
               <Package className="h-5 w-5 text-primary-foreground" />
             </div>
-            <span className="font-bold text-lg text-foreground">ShopeeFind</span>
+            <span className="font-bold text-lg text-foreground">ShopFind</span>
           </Link>
         </div>
 
